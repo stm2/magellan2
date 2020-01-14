@@ -24,21 +24,21 @@ public interface UnitContainer extends Related, Sorted, Taggable, HasCache {
   /**
    * Adds an item to the UnitContainer. If the UnitContainer already has an item of the same type,
    * the item is overwritten with the specified item object.
-   * 
+   *
    * @return the specified item i.
    */
   public Item addItem(Item i);
 
   /**
    * Returns all the items this container possesses.
-   * 
+   *
    * @return a collection of Item objects.
    */
   public Collection<Item> getItems();
 
   /**
    * DOCUMENT-ME
-   * 
+   *
    * @throws IllegalArgumentException DOCUMENT-ME
    */
   public void setType(UnitContainerType t);
@@ -85,7 +85,7 @@ public interface UnitContainer extends Related, Sorted, Taggable, HasCache {
   public Unit removeUnit(ID key);
 
   /**
-   * DOCUMENT-ME
+   * Returns the units in the container after relations.
    */
   public Collection<Unit> modifiedUnits();
 
@@ -98,14 +98,14 @@ public interface UnitContainer extends Related, Sorted, Taggable, HasCache {
   /**
    * Returns value of the owner tag of the UnitContainer or <code>null</code>. Most callers should
    * use {@link #getOwnerUnit()} instead!
-   * 
+   *
    * @return The current owner of the UnitContainer or <code>null</code>.
    */
   public Unit getOwner();
 
   /**
    * Set the value of the owner tag.
-   * 
+   *
    * @param owner
    */
   public void setOwner(Unit owner);
@@ -113,7 +113,7 @@ public interface UnitContainer extends Related, Sorted, Taggable, HasCache {
   /**
    * Sets the unit owning this UnitContainer. You should probably use {@link #setOwner(Unit)}
    * instead!
-   * 
+   *
    * @param unit
    */
   public void setOwnerUnit(Unit unit);
@@ -136,35 +136,35 @@ public interface UnitContainer extends Related, Sorted, Taggable, HasCache {
 
   /**
    * Returns the value of comments.
-   * 
+   *
    * @return Returns comments.
    */
   public List<String> getComments();
 
   /**
    * Sets the value of comments.
-   * 
+   *
    * @param comments The value for comments.
    */
   public void setComments(List<String> comments);
 
   /**
    * Returns the value of effects.
-   * 
+   *
    * @return Returns effects.
    */
   public List<String> getEffects();
 
   /**
    * Sets the value of effects.
-   * 
+   *
    * @param effects The value for effects.
    */
   public void setEffects(List<String> effects);
 
   /**
    * Always returns <code>null</code>. UnitContainers do not have order editors.
-   * 
+   *
    * @return <code>null</code>
    */
   public CacheableOrderEditor getOrderEditor();

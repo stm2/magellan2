@@ -48,7 +48,7 @@ import magellan.library.utils.logging.Logger;
 
 /**
  * The implementation of UnitContainer of the Magellan client.
- * 
+ *
  * @author $Author: $
  * @version $Revision: 389 $
  */
@@ -119,7 +119,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Tries to return the new owner. TODO: not yet fail-proof
-   * 
+   *
    * @return The unit that is going to be the new owner.
    */
   public Unit getModifiedOwnerUnit() {
@@ -157,7 +157,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
   /**
    * Adds an item to the UnitContainer. If the UnitContainer already has an item of the same type,
    * the item is overwritten with the specified item object.
-   * 
+   *
    * @return the specified item i.
    */
   public Item addItem(Item i) {
@@ -172,7 +172,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Returns all the items this container possesses.
-   * 
+   *
    * @return a collection of Item objects.
    */
   public Collection<Item> getItems() {
@@ -425,7 +425,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
    * or Building the normal owning unit is returned (or null, if there is none). In case of a
    * Region, the OwnerUnit of the largest castle is returned. In case of a Faction, null is
    * returned.
-   * 
+   *
    * @see magellan.library.UnitContainer#getOwnerUnit()
    */
   public Unit getOwnerUnit() {
@@ -464,8 +464,11 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   private void invalidateCache() {
     if (hasCache()) {
-      getCache().modifiedName = null;
-      getCache().modifiedContainerUnits = null;
+      Cache cache1 = getCache();
+      cache1.modifiedName = null;
+      cache1.modifiedContainerUnits = null;
+      cache1.modifiedAmount = -1;
+      cache1.modifiedSize = -1;
     }
   }
 
@@ -565,7 +568,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Returns the value of comments.
-   * 
+   *
    * @return Returns comments.
    */
   public List<String> getComments() {
@@ -574,7 +577,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Sets the value of comments.
-   * 
+   *
    * @param comments The value for comments.
    */
   public void setComments(List<String> comments) {
@@ -583,7 +586,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Returns the value of effects.
-   * 
+   *
    * @return Returns effects.
    */
   public List<String> getEffects() {
@@ -592,7 +595,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Sets the value of effects.
-   * 
+   *
    * @param effects The value for effects.
    */
   public void setEffects(List<String> effects) {
@@ -609,7 +612,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Returns the value of cache.
-   * 
+   *
    * @return Returns cache.
    */
   public Cache getCache() {
@@ -629,7 +632,7 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
 
   /**
    * Sets the value of cache.
-   * 
+   *
    * @param cache The value for cache.
    */
   public void setCache(Cache cache) {
@@ -679,4 +682,5 @@ public abstract class MagellanUnitContainerImpl extends MagellanRelatedImpl impl
   public Map<EntityID, Unit> getUnits() {
     return units;
   }
+
 }
