@@ -14,8 +14,20 @@ jobs:
       with:
         java-version: 1.8
     - name: Test with Ant
-      run: ant -noinput -buildfile build.xml run_tests
+      run: |
+         ant -noinput -buildfile build.xml run_tests
+         fails=$(grep -L  "Failures: 0, Errors: 0" test/junit/TEST-*)
+         if [ -n "$fails" ]; then
+           echo Errors in $fails
+           cat $fails
+           exit 1
+         fi
+      # do not exit before all commands are executed
+      shell: bash --noprofile --norc -o pipefail {0}
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
-      if: failure() == 'false'
-        
+#    - name: show failed test
+#      run: >
+#      run: cat test/junit/TEST-magellan.library.utils.OrderReaderTest.txt
+#      shell: bash
+
