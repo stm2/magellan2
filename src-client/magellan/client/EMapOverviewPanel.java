@@ -801,8 +801,9 @@ public class EMapOverviewPanel extends InternationalizedDataPanel implements Tre
       o = ((SimpleNodeWrapper) o).getObject();
     } else {
       EMapOverviewPanel.log
-          .warn("EMapOverviewPanel.valueChanged() : Type of the user object of a selected node is unknown:"
-              + o);
+          .warn(
+              "EMapOverviewPanel.valueChanged() : Type of the user object of a selected node is unknown:"
+                  + o);
     }
     return o;
   }
@@ -1536,7 +1537,8 @@ public class EMapOverviewPanel extends InternationalizedDataPanel implements Tre
         insertUnit(parentNode, e.getTempUnit(), index);
       } else {
         EMapOverviewPanel.log
-            .info("EMapOverviewPanel.tempUnitCreated(): new temp unit is not a child of its parent!");
+            .info(
+                "EMapOverviewPanel.tempUnitCreated(): new temp unit is not a child of its parent!");
       }
     } else {
       EMapOverviewPanel.log
@@ -2120,6 +2122,7 @@ public class EMapOverviewPanel extends InternationalizedDataPanel implements Tre
     // Set<TreeNode> parents = new HashSet<TreeNode>();
     // parents.add(regionNode);
     //
+
     for (Unit u2 : u.getRegion().units()) {
       DefaultMutableTreeNode node = (DefaultMutableTreeNode) unitNodes.get(u2.getID());
       // TreeNode[] path = treeModel.getPathToRoot(node);
