@@ -43,11 +43,13 @@
 	<property name="compile.target"    value="1.7"/>
 	<property name="compile.encoding"  value="ISO-8859-1"/>
 
+        <target name="javac-init">
         <!-- If you choose "true", then at least you know that your build classpath will include the Ant runtime. If you choose "false" then you are accepting the fact that the build behavior will change between older versions and 1.8+. -->
         <presetdef name="javac">
           <javac includeantruntime="false" />
         </presetdef>
-
+        </target>
+        
 	<path id="magellan.class.path">
 		<pathelement path="${java.class.path}/" />
 		<fileset dir="${lib}">
@@ -70,12 +72,16 @@
 		<pathelement location="${classes}" />
 	</path>
 
+        <target name="print_version">
+          <echo message="${VERSION.POINTED}" />
+        </target>
+
 	<!-- *************************************************************** -->
 	<!-- *                                                             * -->
 	<!-- *  This target compiles and packs the magellan library.       * -->
 	<!-- *                                                             * -->
 	<!-- *************************************************************** -->
-	<target name="build_library">
+	<target name="build_library" depends="javac-init">
 		<echo message="Compiling Library..." />
 
 		<!--        <antcall target="clear-classes"/> -->
@@ -125,7 +131,7 @@
 	<!-- *  This target compiles and packs the magellan client.        * -->
 	<!-- *                                                             * -->
 	<!-- *************************************************************** -->
-	<target name="build_client">
+	<target name="build_client" depends="javac-init">
 		<echo message="Compiling Client..." />
 
 		<!--        <antcall target="clear-classes"/> -->
@@ -179,7 +185,7 @@
 	<!-- *  This target compiles and packs the magellan plugin.        * -->
 	<!-- *                                                             * -->
 	<!-- *************************************************************** -->
-	<target name="build_plugins">
+	<target name="build_plugins" depends="javac-init">
 		<echo message="Compiling PlugIns..." />
 
 		<!--		<antcall target="clear-classes"/> -->
@@ -246,7 +252,7 @@
 	<!-- *  This target compiles and packs the magellan library.       * -->
 	<!-- *                                                             * -->
 	<!-- *************************************************************** -->
-	<target name="build_test">
+	<target name="build_test" depends="javac-init">
 		<echo message="Compiling tests..." />
 
 		<!--        <antcall target="clear-classes"/> -->
