@@ -10,17 +10,17 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program (see doc/LICENCE.txt); if not, write to the
-// Free Software Foundation, Inc., 
+// Free Software Foundation, Inc.,
 // 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
+//
 package magellan.library.gamebinding;
 
 import java.util.List;
@@ -34,7 +34,7 @@ import magellan.library.utils.Resources;
 
 /**
  * An order with one or more units as arguments.
- * 
+ *
  * @author stm
  */
 public class UnitArgumentOrder extends SimpleOrder {
@@ -52,7 +52,7 @@ public class UnitArgumentOrder extends SimpleOrder {
 
   /**
    * Returns the value of unit.
-   * 
+   *
    * @return Returns unit.
    */
   public UnitID getUnit() {
@@ -62,7 +62,7 @@ public class UnitArgumentOrder extends SimpleOrder {
   /**
    * Returns the target unit. Returns <code>null</code> if <code>regionOnly==true</code> and the
    * target unit is not in the same region as unit.
-   * 
+   *
    * @param data
    * @param unit
    * @param zeroAllowed If the target is 0, the ZeroUnit of the will be returned if this is true,
@@ -77,7 +77,7 @@ public class UnitArgumentOrder extends SimpleOrder {
       if (zeroAllowed) {
         tUnit = unit.getRegion().getZeroUnit();
       } else {
-        setWarning(unit, line, Resources.get("order.all.war.ning.zeronotallowed"));
+        setWarning(unit, line, Resources.get("order.all.warning.zeronotallowed"));
       }
     } else {
       tUnit = data.getUnit(target);

@@ -10,17 +10,17 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program (see doc/LICENCE.txt); if not, write to the
-// Free Software Foundation, Inc., 
+// Free Software Foundation, Inc.,
 // 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
+//
 package magellan.library.gamebinding;
 
 import java.util.List;
@@ -35,7 +35,7 @@ import magellan.library.utils.Resources;
 
 /**
  * Represents a BETRETE order
- * 
+ *
  * @author stm
  */
 public class EnterOrder extends UCArgumentOrder {
@@ -59,24 +59,25 @@ public class EnterOrder extends UCArgumentOrder {
       return;
 
     UnitContainer target = getContainer(data, unit, type, true);
+    // check whether the unit leaves a container
+    UnitContainer leftUC = unit.getModifiedBuilding();
+    if (leftUC == null) {
+      leftUC = unit.getModifiedShip();
+    }
 
+    EnterRelation enter = null;
     if (target != null) {
-      EnterRelation rel = new EnterRelation(unit, target, line);
-      rel.add();
+      enter = new EnterRelation(unit, target, line);
     } else {
       setWarning(unit, line, Resources.get("order.enter.warning.unknowntarget", container));
     }
 
-    // check whether the unit leaves a container
-    UnitContainer leftUC = unit.getBuilding();
-
-    if (leftUC == null) {
-      leftUC = unit.getShip();
+    if (leftUC != null && leftUC != this) {
+      LeaveRelation leave = new LeaveRelation(unit, leftUC, line, true);
+      leave.add();
     }
-
-    if (leftUC != null) {
-      LeaveRelation rel = new LeaveRelation(unit, leftUC, line, true);
-      rel.add();
+    if (enter != null) {
+      enter.add();
     }
   }
 
