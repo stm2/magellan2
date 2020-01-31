@@ -57,9 +57,9 @@ public class OrderTokenizer {
   }
 
   /**
-   * Reads the next chunk of text from the underlying stream. The token types are only recognized and
-   * set partially by this tokenizer. Apart from comments and quoted strings this has to be done in a
-   * semantical context.
+   * Reads the next chunk of text from the underlying stream. The token types are only recognized
+   * and set partially by this tokenizer. Apart from comments and quoted strings this has to be done
+   * in a semantical context.
    */
   public OrderToken getNextToken() {
     OrderToken retVal = null;
@@ -304,7 +304,11 @@ public class OrderTokenizer {
 
     while ((c = in.read()) != -1) {
       if ((c != ' ') && (c != '\t')) {
-        in.unread(c);
+        if (c == '\\') {
+          in.unread(c);
+        } else {
+          in.unread(c);
+        }
         break;
       }
     }
